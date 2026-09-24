@@ -9,7 +9,7 @@ export const Route = createFileRoute("/app/")({
 });
 
 function Dashboard() {
-  const current = courses[0];
+  const current = courses[0]!;
   return (
     <div className="space-y-6">
       <Panel className="relative overflow-hidden bg-navy p-8 text-navy-foreground">

@@ -21,7 +21,7 @@ function Gobierno() {
   const [b, setB] = useState<Record<string, number>>({ educacion: 25, salud: 20, empleo: 20, seguridad: 20, infra: 15 });
   const total = Object.values(b).reduce((a, c) => a + c, 0);
   const calc = (key: "aprob" | "empleo" | "seguridad") =>
-    Math.min(100, Math.round(sectors.reduce((a, s) => a + b[s.k] * s.w[key], 0) * 2.2));
+    Math.min(100, Math.round(sectors.reduce((a, s) => a + (b[s.k] ?? 0) * s.w[key], 0) * 2.2));
   return (
     <div>
       <PageHeader eyebrow="Simulación" title="Laboratorio de Gobierno" desc="Eres alcalde/sa de Villa Esperanza. Distribuye el presupuesto de $100.000 millones y observa el impacto." />
@@ -32,7 +32,7 @@ function Gobierno() {
             {sectors.map((s) => (
               <div key={s.k}>
                 <div className="mb-2 flex justify-between text-sm"><span className="font-medium">{s.l}</span><span className="font-semibold">{b[s.k]}%</span></div>
-                <Slider value={[b[s.k]]} max={60} step={1} onValueChange={([v]) => setB({ ...b, [s.k]: v })} />
+                <Slider value={[b[s.k] ?? 0]} max={60} step={1} onValueChange={([v]) => setB({ ...b, [s.k]: v ?? 0 })} />
               </div>
             ))}
           </div>

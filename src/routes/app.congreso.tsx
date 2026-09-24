@@ -16,7 +16,7 @@ const speakers = [
 ];
 
 function Congreso() {
-  const bill = bills[0];
+  const bill = bills[0]!;
   const [votes, setVotes] = useState({ yes: bill.yes, no: bill.no, abstain: bill.abstain });
   const [voted, setVoted] = useState<string | null>(null);
   const total = votes.yes + votes.no + votes.abstain;

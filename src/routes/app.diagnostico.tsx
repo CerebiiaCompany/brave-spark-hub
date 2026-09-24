@@ -20,8 +20,10 @@ function Diagnostico() {
   const [step, setStep] = useState(0);
   const [score, setScore] = useState([0, 0, 0]);
   const done = step >= qs.length;
-  const answer = (i: number) => { const s = [...score]; s[i]++; setScore(s); setStep(step + 1); };
+  const answer = (i: number) => { const s = [...score]; s[i] = (s[i] ?? 0) + 1; setScore(s); setStep(step + 1); };
   const best = score.indexOf(Math.max(...score));
+  const bp = paths[best]!;
+  const q = qs[Math.min(step, qs.length - 1)]!;
   return (
     <div>
       <PageHeader eyebrow="Diagnóstico de liderazgo" title="Descubre tu perfil de líder" desc="Responde 5 preguntas y te recomendaremos la ruta ideal para ti." />
@@ -30,22 +32,22 @@ function Diagnostico() {
           <>
             <Bar value={(step / qs.length) * 100} />
             <p className="mt-6 text-xs font-semibold text-muted-foreground">Pregunta {step + 1} de {qs.length}</p>
-            <h2 className="mt-2 text-2xl font-bold">{qs[step].q}</h2>
+            <h2 className="mt-2 text-2xl font-bold">{q.q}</h2>
             <div className="mt-6 space-y-3">
-              {qs[step].a.map(([t, i]) => (
+              {q.a.map(([t, i]) => (
                 <button key={t} onClick={() => answer(i)} className="w-full rounded-xl border p-4 text-left font-medium transition hover:border-primary hover:bg-accent">{t}</button>
               ))}
             </div>
           </>
         ) : (
           <div className="text-center">
-            <p className="text-6xl">{paths[best].emoji}</p>
+            <p className="text-6xl">{bp.emoji}</p>
             <p className="mt-4 text-sm font-semibold text-primary">Tu perfil predominante</p>
-            <h2 className="mt-1 text-3xl font-bold">{paths[best].title}</h2>
-            <p className="mx-auto mt-3 max-w-md text-muted-foreground">{paths[best].desc}</p>
+            <h2 className="mt-1 text-3xl font-bold">{bp.title}</h2>
+            <p className="mx-auto mt-3 max-w-md text-muted-foreground">{bp.desc}</p>
             <div className="mx-auto mt-6 max-w-sm space-y-3 text-left">
               {paths.map((p, i) => (
-                <div key={p.id}><div className="flex justify-between text-sm"><span>{p.title}</span><span className="font-semibold">{Math.round((score[i] / qs.length) * 100)}%</span></div><Bar value={(score[i] / qs.length) * 100} className="mt-1" /></div>
+                <div key={p.id}><div className="flex justify-between text-sm"><span>{p.title}</span><span className="font-semibold">{Math.round(((score[i] ?? 0) / qs.length) * 100)}%</span></div><Bar value={((score[i] ?? 0) / qs.length) * 100} className="mt-1" /></div>
               ))}
             </div>
             <div className="mt-8 flex justify-center gap-3">
