@@ -1,5 +1,6 @@
 // Contenido de muestra por curso. Reemplazar por material pedagógico oficial.
 import { courses } from "@/lib/data";
+import leadershipVideo from "@/assets/liderazgo-participacion.mp4.asset.json";
 
 export type Course = (typeof courses)[number];
 export type Lesson = {
@@ -12,7 +13,7 @@ export type Lesson = {
   question: { q: string; options: string[]; answer: number };
 };
 
-const VIDEO = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+const VIDEO = leadershipVideo.url;
 
 const stages = [
   "Conceptos esenciales",

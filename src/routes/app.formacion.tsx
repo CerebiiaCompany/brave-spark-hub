@@ -92,7 +92,7 @@ function CourseViewer({ course, start, onClose, onCert }: { course: Course; star
         <div className="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
           <div className="min-w-0">
             <video key={cur} src={l.video} controls playsInline className="aspect-video w-full rounded-xl bg-navy" aria-label={`Video: ${l.title}`} />
-            <p className="mt-1 text-xs text-muted-foreground">Video de muestra — se reemplazará por la clase oficial.</p>
+            <p className="mt-1 text-xs text-muted-foreground">Material audiovisual sobre liderazgo público y participación ciudadana.</p>
             <h3 className="mt-4 text-lg font-bold">{cur + 1}. {l.title}</h3>
             <div className="mt-3 flex gap-2 overflow-x-auto">
               {([["notas", "Notas clave", Lightbulb], ["lectura", "Lectura", BookOpen], ["recursos", "Recursos PDF", FileText]] as const).map(([k, label, Icon]) => (
