@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppCongresoRouteImport } from './routes/app.congreso'
+import { Route as AppFormacionRouteImport } from './routes/app.formacion'
+import { Route as AppGobiernoRouteImport } from './routes/app.gobierno'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCongresoRoute = AppCongresoRouteImport.update({
+  id: '/congreso',
+  path: '/congreso',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppFormacionRoute = AppFormacionRouteImport.update({
+  id: '/formacion',
+  path: '/formacion',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGobiernoRoute = AppGobiernoRouteImport.update({
+  id: '/gobierno',
+  path: '/gobierno',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/congreso': typeof AppCongresoRoute
+  '/app/formacion': typeof AppFormacionRoute
+  '/app/gobierno': typeof AppGobiernoRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/congreso': typeof AppCongresoRoute
+  '/app/formacion': typeof AppFormacionRoute
+  '/app/gobierno': typeof AppGobiernoRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/congreso': typeof AppCongresoRoute
+  '/app/formacion': typeof AppFormacionRoute
+  '/app/gobierno': typeof AppGobiernoRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/congreso'
+    | '/app/formacion'
+    | '/app/gobierno'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/app/congreso' | '/app/formacion' | '/app/gobierno' | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/congreso'
+    | '/app/formacion'
+    | '/app/gobierno'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,63 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/congreso': {
+      id: '/app/congreso'
+      path: '/congreso'
+      fullPath: '/app/congreso'
+      preLoaderRoute: typeof AppCongresoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/formacion': {
+      id: '/app/formacion'
+      path: '/formacion'
+      fullPath: '/app/formacion'
+      preLoaderRoute: typeof AppFormacionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/gobierno': {
+      id: '/app/gobierno'
+      path: '/gobierno'
+      fullPath: '/app/gobierno'
+      preLoaderRoute: typeof AppGobiernoRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCongresoRoute: typeof AppCongresoRoute
+  AppFormacionRoute: typeof AppFormacionRoute
+  AppGobiernoRoute: typeof AppGobiernoRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCongresoRoute: AppCongresoRoute,
+  AppFormacionRoute: AppFormacionRoute,
+  AppGobiernoRoute: AppGobiernoRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
