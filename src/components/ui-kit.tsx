@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export function PageHeader({ eyebrow, title, desc, action }: { eyebrow?: string; title: string; desc?: string; action?: ReactNode }) {
   return (
@@ -44,22 +44,22 @@ export function Stat({ label, value, icon }: { label: string; value: ReactNode; 
         <span className="text-xs font-medium uppercase tracking-wide">{label}</span>
         {icon}
       </div>
-      <p className="mt-3 font-display text-2xl font-bold text-foreground">{value}</p>
+      <p className="mt-3 break-words font-display text-xl font-bold text-foreground sm:text-2xl">{value}</p>
     </Panel>
   );
 }
 
-export function PrimaryBtn({ children, onClick, className = "" }: { children: ReactNode; onClick?: () => void; className?: string }) {
+export function PrimaryBtn({ children, className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button onClick={onClick} className={`inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-bright active:scale-[0.98] ${className}`}>
+    <button {...props} className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-bright active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 ${className}`}>
       {children}
     </button>
   );
 }
 
-export function GhostBtn({ children, onClick, className = "" }: { children: ReactNode; onClick?: () => void; className?: string }) {
+export function GhostBtn({ children, className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button onClick={onClick} className={`inline-flex items-center justify-center gap-2 rounded-xl border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition hover:bg-accent ${className}`}>
+    <button {...props} className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition hover:bg-accent disabled:cursor-not-allowed disabled:opacity-50 ${className}`}>
       {children}
     </button>
   );
