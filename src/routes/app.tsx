@@ -54,17 +54,17 @@ function AppLayout() {
       </aside>
       {open && <div className="fixed inset-0 z-40 bg-navy/30 lg:hidden" onClick={() => setOpen(false)} />}
       <div className="min-w-0 flex-1">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/85 px-5 backdrop-blur">
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/85 px-4 backdrop-blur sm:px-5">
           <button className="lg:hidden" onClick={() => setOpen(true)} aria-label="Abrir menú"><Menu className="h-5 w-5" /></button>
           <div className="hidden text-sm text-muted-foreground lg:block">Centro para el Liderazgo Valiente Miguel Uribe Turbay</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <span className="flex items-center gap-1 text-sm font-semibold"><Flame className="h-4 w-4 text-coral" />{user.streak}</span>
             <span className="rounded-full bg-accent px-2.5 py-1 text-xs font-bold text-accent-foreground">{user.xp.toLocaleString("es-CO")} XP</span>
             <Bell className="h-5 w-5 text-muted-foreground" />
             <Link to="/app/perfil" className="grid h-9 w-9 place-items-center rounded-full bg-navy text-xs font-bold text-navy-foreground">MG</Link>
           </div>
         </header>
-        <main className="mx-auto max-w-6xl px-5 py-8 md:px-8">
+        <main className="mx-auto max-w-6xl px-4 py-6 sm:px-5 md:px-8 md:py-8">
           <Outlet />
         </main>
       </div>

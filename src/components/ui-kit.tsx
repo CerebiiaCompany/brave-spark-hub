@@ -5,7 +5,7 @@ export function PageHeader({ eyebrow, title, desc, action }: { eyebrow?: string;
     <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
         {eyebrow && <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">{eyebrow}</p>}
-        <h1 className="text-3xl font-bold text-foreground md:text-4xl">{title}</h1>
+        <h1 className="text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">{title}</h1>
         {desc && <p className="mt-2 max-w-2xl text-muted-foreground">{desc}</p>}
       </div>
       {action}
@@ -14,7 +14,7 @@ export function PageHeader({ eyebrow, title, desc, action }: { eyebrow?: string;
 }
 
 export function Panel({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`rounded-2xl border bg-card p-6 shadow-soft ${className}`}>{children}</div>;
+  return <div className={`rounded-2xl border bg-card p-4 shadow-soft sm:p-6 ${className}`}>{children}</div>;
 }
 
 export function Bar({ value, className = "" }: { value: number; className?: string }) {
