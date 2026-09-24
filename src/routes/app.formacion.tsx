@@ -20,6 +20,7 @@ function Formacion() {
   const [filter, setFilter] = useState("Todas");
   const [selected, setSelected] = useState<(typeof courses)[number] | null>(null);
   const [lesson, setLesson] = useState(0);
+  const [cert, setCert] = useState<Course | null>(null);
   const list = filter === "Todas" ? courses : courses.filter((c) => c.path === filter);
   return (
     <div>
@@ -44,9 +45,12 @@ function Formacion() {
             <h3 className="mt-4 text-xl font-bold">{c.title}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{c.lessons} lecciones · {c.hours} horas</p>
             <div className="mt-5 flex items-center gap-3"><Bar value={c.progress} /><span className="text-sm font-semibold">{c.progress}%</span></div>
-            <PrimaryBtn className="mt-5 w-full sm:w-auto sm:self-start" onClick={() => { setSelected(c); setLesson(Math.floor(c.progress / Math.max(1, 100 / c.lessons))); }}>
-              {c.progress === 0 ? "Empezar" : c.progress === 100 ? "Repasar" : "Continuar"}
-            </PrimaryBtn>
+            <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+              <PrimaryBtn className="w-full sm:w-auto" onClick={() => { setSelected(c); setLesson(Math.round((c.progress / 100) * c.lessons)); }}>
+                {c.progress === 0 ? "Empezar" : c.progress === 100 ? "Repasar" : "Continuar"}
+              </PrimaryBtn>
+              {c.progress === 100 && <GhostBtn className="w-full sm:w-auto" onClick={() => setCert(c)}><Award className="h-4 w-4" /> Certificado</GhostBtn>}
+            </div>
           </Panel>
         ))}
       </div>
