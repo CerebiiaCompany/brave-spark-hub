@@ -9,6 +9,9 @@ export const Route = createFileRoute("/app/informacion")({
     meta: [
       { title: "Laboratorio de Información — Liderazgo Valiente" },
       { name: "description", content: "Investiga afirmaciones, sube soportes y entrena tu criterio frente a la desinformación." },
+      { property: "og:title", content: "Laboratorio de Información — Liderazgo Valiente" },
+      { property: "og:description", content: "Investiga afirmaciones, sube soportes y entrena tu criterio." },
+      { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Info,
@@ -98,7 +101,7 @@ function Info() {
             </Panel>
             <Panel>
               <h3 className="font-bold">Tu veredicto</h3>
-              <div className="mt-4 grid grid-cols-3 gap-2">
+              <div className="mt-4 grid gap-2 min-[430px]:grid-cols-3">
                 {verdicts.map((o) => (
                   <button key={o} onClick={() => !w.pick && submit(o)}
                     className={`rounded-xl border p-3 text-sm font-semibold transition ${w.pick ? (o === c.verdict ? "border-success bg-success/15" : o === w.pick ? "border-coral bg-coral/15" : "opacity-50") : "hover:bg-accent"}`}>{o}</button>
@@ -116,8 +119,8 @@ function Info() {
     <div>
       <PageHeader eyebrow="Pensamiento crítico" title="Laboratorio de Información" desc="Investiga cada afirmación con 5 preguntas, sube soportes y emite tu veredicto."
         action={<Chip tone="gold">🔎 {correct}/{solved.length} aciertos</Chip>} />
-      <div className="mb-5 flex flex-wrap gap-2">
-        {topics.map((t) => <button key={t} onClick={() => setFilter(t)} className={`rounded-full px-3 py-1.5 text-sm font-semibold ${filter === t ? "bg-primary text-primary-foreground" : "bg-card border"}`}>{t}</button>)}
+      <div className="-mx-4 mb-5 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
+        {topics.map((t) => <button key={t} onClick={() => setFilter(t)} className={`min-h-10 shrink-0 rounded-full px-3 py-1.5 text-sm font-semibold ${filter === t ? "bg-primary text-primary-foreground" : "bg-card border"}`}>{t}</button>)}
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {cases.filter((c) => filter === "Todos" || c.topic === filter).map((c) => {

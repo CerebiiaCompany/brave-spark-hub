@@ -4,7 +4,11 @@ import { user, courses, challenges, activities, skills, badges, levels } from "@
 import { Panel, Bar, Stat } from "@/components/ui-kit";
 
 export const Route = createFileRoute("/app/")({
-  head: () => ({ meta: [{ title: "Inicio — Liderazgo Valiente" }] }),
+  head: () => ({ meta: [
+    { title: "Mi avance — Liderazgo Valiente" }, { name: "description", content: "Resumen personal de formación, retos, habilidades y próximas actividades." },
+    { property: "og:title", content: "Mi avance — Liderazgo Valiente" }, { property: "og:description", content: "Resumen personal de formación, retos y habilidades." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Dashboard,
 });
 
@@ -12,7 +16,7 @@ function Dashboard() {
   const current = courses[0]!;
   return (
     <div className="space-y-6">
-      <Panel className="relative overflow-hidden bg-navy p-8 text-navy-foreground">
+      <Panel className="relative overflow-hidden bg-navy p-5 text-navy-foreground sm:p-8">
         <div className="absolute inset-0 bg-grid opacity-20" />
         <div className="relative grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
           <div>
@@ -23,14 +27,14 @@ function Dashboard() {
               <div className="h-full rounded-full bg-bright" style={{ width: `${user.levelProgress}%` }} />
             </div>
           </div>
-          <div className="flex items-center gap-3 md:justify-end">
+           <div className="flex items-center gap-3 md:justify-end">
             <Flame className="h-8 w-8 text-coral" />
             <div><p className="font-display text-2xl font-bold">{user.streak} días</p><p className="text-sm text-navy-foreground/70">de racha</p></div>
           </div>
         </div>
       </Panel>
 
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
         <Stat label="Nivel" value={user.level} icon={<Star className="h-4 w-4" />} />
         <Stat label="XP" value={user.xp.toLocaleString("es-CO")} icon={<TrendingUp className="h-4 w-4" />} />
         <Stat label="Racha" value={`🔥 ${user.streak}`} />
@@ -45,7 +49,7 @@ function Dashboard() {
           <p className="text-xs font-semibold uppercase tracking-widest text-primary">Continúa</p>
           <h2 className="mt-2 text-2xl font-bold">{current.title}</h2>
           <p className="mt-1 text-sm text-muted-foreground">Módulo 4 · Diseño de la agenda pública</p>
-          <div className="mt-5 flex items-center gap-4"><Bar value={current.progress} /><span className="text-sm font-semibold">{current.progress}%</span></div>
+          <div className="mt-5 flex items-center gap-4"><Bar value={current.progress} /><span className="shrink-0 text-sm font-semibold">{current.progress}%</span></div>
           <Link to="/app/formacion" className="mt-5 inline-flex rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-bright">Continuar</Link>
         </Panel>
         <Panel>

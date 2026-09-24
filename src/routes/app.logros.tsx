@@ -1,9 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Flame, LockKeyhole, TrendingUp } from "lucide-react";
 import { badges, skills, levels, user, demoUsers } from "@/lib/data";
-import { PageHeader, Panel, Bar } from "@/components/ui-kit";
+import { PageHeader, Panel, Bar, Chip } from "@/components/ui-kit";
 
 export const Route = createFileRoute("/app/logros")({
-  head: () => ({ meta: [{ title: "Mis logros — Liderazgo Valiente" }] }),
+  head: () => ({ meta: [
+    { title: "Mis logros — Liderazgo Valiente" }, { name: "description", content: "Niveles, insignias, habilidades y ranking de la experiencia de liderazgo." },
+    { property: "og:title", content: "Mis logros — Liderazgo Valiente" }, { property: "og:description", content: "Niveles, insignias, habilidades y ranking de liderazgo." },
+    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
+  ] }),
   component: Logros,
 });
 
@@ -12,6 +18,8 @@ const tone: Record<string, string> = {
 };
 
 function Logros() {
+  const [filter, setFilter] = useState("Todas");
+  const visible = badges.filter((b) => filter === "Todas" || (filter === "Obtenidas" ? b.earned : !b.earned));
   return (
     <div className="space-y-6">
       <PageHeader eyebrow="Gamificación" title="Mis logros" desc={`${user.badges} insignias · Nivel ${user.level} · ${user.xp.toLocaleString("es-CO")} XP`} />
@@ -25,15 +33,16 @@ function Logros() {
           ))}
         </div>
       </Panel>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3"><Panel><Flame className="h-5 w-5 text-coral" /><p className="mt-2 text-2xl font-bold">{user.streak} días</p><p className="text-xs text-muted-foreground">racha activa</p></Panel><Panel><TrendingUp className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">+480</p><p className="text-xs text-muted-foreground">XP esta semana</p></Panel><Panel className="col-span-2 md:col-span-1"><LockKeyhole className="h-5 w-5 text-violet" /><p className="mt-2 text-2xl font-bold">3 retos</p><p className="text-xs text-muted-foreground">para el siguiente nivel</p></Panel></div>
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <Panel>
-          <h3 className="font-bold">Insignias</h3>
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"><h3 className="font-bold">Insignias</h3><div className="flex gap-2">{["Todas","Obtenidas","Pendientes"].map((f) => <button key={f} onClick={() => setFilter(f)} className={`rounded-full px-3 py-1.5 text-xs font-semibold ${filter === f ? "bg-primary text-primary-foreground" : "bg-secondary"}`}>{f}</button>)}</div></div>
           <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            {badges.map((b) => (
+            {visible.map((b) => (
               <div key={b.name} className={`card-hover rounded-2xl p-4 text-center ${tone[b.tone]}`}>
                 <p className="text-3xl">{b.emoji}</p>
                 <p className="mt-2 text-sm font-bold">{b.name}</p>
-                <p className="text-xs text-muted-foreground">{b.desc}</p>
+                 <p className="text-xs text-muted-foreground">{b.desc}</p>{!b.earned && <Chip tone="violet">Pendiente</Chip>}
               </div>
             ))}
           </div>
