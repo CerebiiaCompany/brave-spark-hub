@@ -9,7 +9,7 @@ export const Route = createFileRoute("/app/territorio")({
 });
 
 function Territorio() {
-  const [sel, setSel] = useState(territories[0]);
+  const [sel, setSel] = useState(territories[0]!);
   return (
     <div>
       <PageHeader eyebrow="Territorio" title="Mapa territorial" desc="Presencia del Centro en Norte de Santander y la zona de frontera." />

@@ -15,7 +15,7 @@ function Info() {
   const [i, setI] = useState(0);
   const [pick, setPick] = useState<string | null>(null);
   const [score, setScore] = useState(0);
-  const item = newsItems[i];
+  const item = newsItems[Math.min(i, newsItems.length - 1)]!;
   const done = i >= newsItems.length;
   const choose = (o: string) => {
     if (pick) return;
