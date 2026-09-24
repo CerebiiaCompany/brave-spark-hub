@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { Award, BookOpen, CalendarDays, Edit3, FileCheck2, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { user, badges, skills, projects, courses, activities } from "@/lib/data";
 import { Panel, Bar, Chip, GhostBtn } from "@/components/ui-kit";
+import { CertificateModal, certData } from "@/components/Certificate";
+import type { Course } from "@/lib/course-content";
 
 export const Route = createFileRoute("/app/perfil")({
   head: () => ({ meta: [
@@ -14,6 +17,7 @@ export const Route = createFileRoute("/app/perfil")({
 });
 
 function Perfil() {
+  const [cert, setCert] = useState<Course | null>(null);
   return (
     <div className="space-y-6">
       <Panel className="overflow-hidden p-0">
@@ -35,10 +39,15 @@ function Perfil() {
           <div className="mt-3 space-y-2">
             {projects.filter((p) => p.author === user.name).map((p) => <div key={p.title} className="rounded-xl bg-secondary p-3 text-sm font-semibold">{p.title} · <span className="font-normal text-muted-foreground">{p.stage}</span></div>)}
           </div>
-           <h3 className="mt-6 flex items-center gap-2 font-bold"><FileCheck2 className="h-5 w-5 text-primary" /> Certificados</h3>
+          <h3 className="mt-6 flex items-center gap-2 font-bold"><FileCheck2 className="h-5 w-5 text-primary" /> Certificados</h3>
           <div className="mt-3 space-y-2">
-            {courses.filter((c) => c.progress === 100).map((c) => <div key={c.id} className="rounded-xl border p-3 text-sm">🎓 {c.title}</div>)}
+            {courses.filter((c) => c.progress === 100).map((c) => { const d = certData(c); return (
+              <div key={c.id} className="grid gap-3 rounded-xl border p-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+                <div className="min-w-0"><p className="text-sm font-semibold">🎓 {c.title}</p><p className="text-xs text-muted-foreground">{c.hours} h · {d.date} · <span className="font-mono">{d.code}</span></p></div>
+                <GhostBtn onClick={() => setCert(c)}>Ver, descargar o compartir</GhostBtn>
+              </div>); })}
           </div>
+          {cert && <CertificateModal course={cert} onClose={() => setCert(null)} />}
         </Panel>
         <Panel>
           <h3 className="font-bold">Habilidades principales</h3>

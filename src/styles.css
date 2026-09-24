@@ -127,3 +127,10 @@
 @keyframes float-slow { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
 @keyframes flow { 0% { background-position: 0% 50% } 100% { background-position: 200% 50% } }
 @utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+
+@media print {
+  body:has(.cert-print-root) * { visibility: hidden; }
+  .cert-print-root .cert-sheet, .cert-print-root .cert-sheet * { visibility: visible; }
+  .cert-print-root .cert-sheet { position: fixed; inset: 0; margin: auto; height: fit-content; }
+  .no-print { display: none !important; }
+}
