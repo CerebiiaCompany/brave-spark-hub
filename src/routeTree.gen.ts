@@ -12,9 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAlianzasRouteImport } from './routes/app.alianzas'
 import { Route as AppCongresoRouteImport } from './routes/app.congreso'
+import { Route as AppDiagnosticoRouteImport } from './routes/app.diagnostico'
 import { Route as AppFormacionRouteImport } from './routes/app.formacion'
 import { Route as AppGobiernoRouteImport } from './routes/app.gobierno'
+import { Route as AppImpactoRouteImport } from './routes/app.impacto'
+import { Route as AppIncubadoraRouteImport } from './routes/app.incubadora'
+import { Route as AppInformacionRouteImport } from './routes/app.informacion'
+import { Route as AppLogrosRouteImport } from './routes/app.logros'
+import { Route as AppPerfilRouteImport } from './routes/app.perfil'
+import { Route as AppProyectosRouteImport } from './routes/app.proyectos'
+import { Route as AppRetosRouteImport } from './routes/app.retos'
+import { Route as AppTerritorioRouteImport } from './routes/app.territorio'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -31,9 +41,19 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAlianzasRoute = AppAlianzasRouteImport.update({
+  id: '/alianzas',
+  path: '/alianzas',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCongresoRoute = AppCongresoRouteImport.update({
   id: '/congreso',
   path: '/congreso',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDiagnosticoRoute = AppDiagnosticoRouteImport.update({
+  id: '/diagnostico',
+  path: '/diagnostico',
   getParentRoute: () => AppRoute,
 } as any)
 const AppFormacionRoute = AppFormacionRouteImport.update({
@@ -46,29 +66,99 @@ const AppGobiernoRoute = AppGobiernoRouteImport.update({
   path: '/gobierno',
   getParentRoute: () => AppRoute,
 } as any)
+const AppImpactoRoute = AppImpactoRouteImport.update({
+  id: '/impacto',
+  path: '/impacto',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIncubadoraRoute = AppIncubadoraRouteImport.update({
+  id: '/incubadora',
+  path: '/incubadora',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInformacionRoute = AppInformacionRouteImport.update({
+  id: '/informacion',
+  path: '/informacion',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLogrosRoute = AppLogrosRouteImport.update({
+  id: '/logros',
+  path: '/logros',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPerfilRoute = AppPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProyectosRoute = AppProyectosRouteImport.update({
+  id: '/proyectos',
+  path: '/proyectos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRetosRoute = AppRetosRouteImport.update({
+  id: '/retos',
+  path: '/retos',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTerritorioRoute = AppTerritorioRouteImport.update({
+  id: '/territorio',
+  path: '/territorio',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/alianzas': typeof AppAlianzasRoute
   '/app/congreso': typeof AppCongresoRoute
+  '/app/diagnostico': typeof AppDiagnosticoRoute
   '/app/formacion': typeof AppFormacionRoute
   '/app/gobierno': typeof AppGobiernoRoute
+  '/app/impacto': typeof AppImpactoRoute
+  '/app/incubadora': typeof AppIncubadoraRoute
+  '/app/informacion': typeof AppInformacionRoute
+  '/app/logros': typeof AppLogrosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/proyectos': typeof AppProyectosRoute
+  '/app/retos': typeof AppRetosRoute
+  '/app/territorio': typeof AppTerritorioRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/alianzas': typeof AppAlianzasRoute
   '/app/congreso': typeof AppCongresoRoute
+  '/app/diagnostico': typeof AppDiagnosticoRoute
   '/app/formacion': typeof AppFormacionRoute
   '/app/gobierno': typeof AppGobiernoRoute
+  '/app/impacto': typeof AppImpactoRoute
+  '/app/incubadora': typeof AppIncubadoraRoute
+  '/app/informacion': typeof AppInformacionRoute
+  '/app/logros': typeof AppLogrosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/proyectos': typeof AppProyectosRoute
+  '/app/retos': typeof AppRetosRoute
+  '/app/territorio': typeof AppTerritorioRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/alianzas': typeof AppAlianzasRoute
   '/app/congreso': typeof AppCongresoRoute
+  '/app/diagnostico': typeof AppDiagnosticoRoute
   '/app/formacion': typeof AppFormacionRoute
   '/app/gobierno': typeof AppGobiernoRoute
+  '/app/impacto': typeof AppImpactoRoute
+  '/app/incubadora': typeof AppIncubadoraRoute
+  '/app/informacion': typeof AppInformacionRoute
+  '/app/logros': typeof AppLogrosRoute
+  '/app/perfil': typeof AppPerfilRoute
+  '/app/proyectos': typeof AppProyectosRoute
+  '/app/retos': typeof AppRetosRoute
+  '/app/territorio': typeof AppTerritorioRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -76,19 +166,54 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/alianzas'
     | '/app/congreso'
+    | '/app/diagnostico'
     | '/app/formacion'
     | '/app/gobierno'
+    | '/app/impacto'
+    | '/app/incubadora'
+    | '/app/informacion'
+    | '/app/logros'
+    | '/app/perfil'
+    | '/app/proyectos'
+    | '/app/retos'
+    | '/app/territorio'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/congreso' | '/app/formacion' | '/app/gobierno' | '/app'
+  to:
+    | '/'
+    | '/app/alianzas'
+    | '/app/congreso'
+    | '/app/diagnostico'
+    | '/app/formacion'
+    | '/app/gobierno'
+    | '/app/impacto'
+    | '/app/incubadora'
+    | '/app/informacion'
+    | '/app/logros'
+    | '/app/perfil'
+    | '/app/proyectos'
+    | '/app/retos'
+    | '/app/territorio'
+    | '/app'
   id:
     | '__root__'
     | '/'
     | '/app'
+    | '/app/alianzas'
     | '/app/congreso'
+    | '/app/diagnostico'
     | '/app/formacion'
     | '/app/gobierno'
+    | '/app/impacto'
+    | '/app/incubadora'
+    | '/app/informacion'
+    | '/app/logros'
+    | '/app/perfil'
+    | '/app/proyectos'
+    | '/app/retos'
+    | '/app/territorio'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -120,11 +245,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/alianzas': {
+      id: '/app/alianzas'
+      path: '/alianzas'
+      fullPath: '/app/alianzas'
+      preLoaderRoute: typeof AppAlianzasRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/congreso': {
       id: '/app/congreso'
       path: '/congreso'
       fullPath: '/app/congreso'
       preLoaderRoute: typeof AppCongresoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/diagnostico': {
+      id: '/app/diagnostico'
+      path: '/diagnostico'
+      fullPath: '/app/diagnostico'
+      preLoaderRoute: typeof AppDiagnosticoRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/formacion': {
@@ -141,20 +280,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGobiernoRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/impacto': {
+      id: '/app/impacto'
+      path: '/impacto'
+      fullPath: '/app/impacto'
+      preLoaderRoute: typeof AppImpactoRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/incubadora': {
+      id: '/app/incubadora'
+      path: '/incubadora'
+      fullPath: '/app/incubadora'
+      preLoaderRoute: typeof AppIncubadoraRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/informacion': {
+      id: '/app/informacion'
+      path: '/informacion'
+      fullPath: '/app/informacion'
+      preLoaderRoute: typeof AppInformacionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/logros': {
+      id: '/app/logros'
+      path: '/logros'
+      fullPath: '/app/logros'
+      preLoaderRoute: typeof AppLogrosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/perfil': {
+      id: '/app/perfil'
+      path: '/perfil'
+      fullPath: '/app/perfil'
+      preLoaderRoute: typeof AppPerfilRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/proyectos': {
+      id: '/app/proyectos'
+      path: '/proyectos'
+      fullPath: '/app/proyectos'
+      preLoaderRoute: typeof AppProyectosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/retos': {
+      id: '/app/retos'
+      path: '/retos'
+      fullPath: '/app/retos'
+      preLoaderRoute: typeof AppRetosRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/territorio': {
+      id: '/app/territorio'
+      path: '/territorio'
+      fullPath: '/app/territorio'
+      preLoaderRoute: typeof AppTerritorioRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAlianzasRoute: typeof AppAlianzasRoute
   AppCongresoRoute: typeof AppCongresoRoute
+  AppDiagnosticoRoute: typeof AppDiagnosticoRoute
   AppFormacionRoute: typeof AppFormacionRoute
   AppGobiernoRoute: typeof AppGobiernoRoute
+  AppImpactoRoute: typeof AppImpactoRoute
+  AppIncubadoraRoute: typeof AppIncubadoraRoute
+  AppInformacionRoute: typeof AppInformacionRoute
+  AppLogrosRoute: typeof AppLogrosRoute
+  AppPerfilRoute: typeof AppPerfilRoute
+  AppProyectosRoute: typeof AppProyectosRoute
+  AppRetosRoute: typeof AppRetosRoute
+  AppTerritorioRoute: typeof AppTerritorioRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAlianzasRoute: AppAlianzasRoute,
   AppCongresoRoute: AppCongresoRoute,
+  AppDiagnosticoRoute: AppDiagnosticoRoute,
   AppFormacionRoute: AppFormacionRoute,
   AppGobiernoRoute: AppGobiernoRoute,
+  AppImpactoRoute: AppImpactoRoute,
+  AppIncubadoraRoute: AppIncubadoraRoute,
+  AppInformacionRoute: AppInformacionRoute,
+  AppLogrosRoute: AppLogrosRoute,
+  AppPerfilRoute: AppPerfilRoute,
+  AppProyectosRoute: AppProyectosRoute,
+  AppRetosRoute: AppRetosRoute,
+  AppTerritorioRoute: AppTerritorioRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
