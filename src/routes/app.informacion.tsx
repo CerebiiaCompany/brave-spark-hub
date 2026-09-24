@@ -49,8 +49,8 @@ function Info() {
     const set = (patch: Partial<Work>) => setWork({ ...work, [sel]: { ...w, ...patch } });
     const filled = questions.filter(([k]) => (w.answers[k] ?? "").trim().length >= 10).length;
     const submit = (v: string) => {
-      if (filled < 5) return toast.error("Responde las 5 preguntas de investigación (mín. 10 caracteres)");
-      if (w.files.length === 0) return toast.error("Sube al menos un soporte");
+      if (filled < 5) { toast.error("Responde las 5 preguntas de investigación (mín. 10 caracteres)"); return; }
+      if (w.files.length === 0) { toast.error("Sube al menos un soporte"); return; }
       set({ pick: v });
       v === c.verdict ? toast.success(`¡Correcto! +${c.xp} XP`) : toast.error("No es el veredicto correcto. Revisa la explicación.");
     };

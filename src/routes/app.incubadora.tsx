@@ -36,7 +36,7 @@ function Incubadora() {
   const update = (patch: Partial<Project>) => setProjects(projects.map((x) => (x.id === p!.id ? { ...x, ...patch } : x)));
 
   const create = () => {
-    if (!form || form.name.trim().length < 3) return toast.error("Ponle un nombre de al menos 3 letras");
+    if (!form || form.name.trim().length < 3) { toast.error("Ponle un nombre de al menos 3 letras"); return; }
     const np: Project = { id: crypto.randomUUID(), name: form.name.trim(), category: form.category, pitch: form.pitch.trim(), stage: 0, canvas: {} };
     setProjects([...projects, np]); setSel(np.id); setForm(null); toast.success("Proyecto creado · +50 XP");
   };

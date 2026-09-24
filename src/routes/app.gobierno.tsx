@@ -70,9 +70,9 @@ function Gobierno() {
   const calc = (key: (typeof metrics)[number][0]) => Math.min(100, Math.round(act.items.reduce((a, s) => a + (b[s.k] ?? 0) * s.impact[key], 0) * (n / 2.2)));
   const goalPct = (it: Item) => Math.min(100, Math.round(((b[it.k] ?? 0) / Math.max(it.min * 1.8, 1)) * 100));
   const submit = () => {
-    if (total !== 100) return toast.error("El presupuesto debe sumar exactamente 100%");
+    if (total !== 100) { toast.error("El presupuesto debe sumar exactamente 100%"); return; }
     const under = act.items.filter((it) => (b[it.k] ?? 0) < it.min);
-    if (under.length) return toast.error(`Bajo el mínimo: ${under.map((u) => u.l).join(", ")}`);
+    if (under.length) { toast.error(`Bajo el mínimo: ${under.map((u) => u.l).join(", ")}`); return; }
     const score = Math.round(metrics.reduce((a, [k]) => a + calc(k), 0) / metrics.length);
     setDone({ ...done, [actId]: score });
     toast.success(`Aprobado · Puntaje ${score}/100 · +${act.xp} XP`);

@@ -84,7 +84,7 @@ function Congreso() {
     setVotes((v) => ({ ...v, [k]: v[k] + 1 })); setVoted(label); gain(40, `Voto: ${label}`);
   };
   const speak = () => {
-    if (text.trim().length < 15) return toast.error("Tu argumento debe tener al menos 15 caracteres");
+    if (text.trim().length < 15) { toast.error("Tu argumento debe tener al menos 15 caracteres"); return; }
     setSpeeches([{ n: "Tú", s: stance, t: text, likes: 0 }, ...speeches]); setText(""); gain(60, "Intervención registrada");
   };
   const tone = time < 30 ? "text-coral" : time < 60 ? "text-warning" : "text-primary";
