@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { BookOpen, CheckCircle2, ChevronLeft, Clock, LockKeyhole, PlayCircle, X } from "lucide-react";
 import { courses, paths } from "@/lib/data";
-import { PageHeader, Panel, Bar, Chip, PrimaryBtn } from "@/components/ui-kit";
+import { PageHeader, Panel, Bar, Chip, PrimaryBtn, GhostBtn } from "@/components/ui-kit";
 
 export const Route = createFileRoute("/app/formacion")({
   head: () => ({ meta: [

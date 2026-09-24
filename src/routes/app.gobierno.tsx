@@ -9,6 +9,9 @@ export const Route = createFileRoute("/app/gobierno")({
     meta: [
       { title: "Laboratorio de Gobierno — Liderazgo Valiente" },
       { name: "description", content: "Simulaciones de gobierno: presupuesto, crisis y plan de desarrollo con objetivos e impacto." },
+      { property: "og:title", content: "Laboratorio de Gobierno — Liderazgo Valiente" },
+      { property: "og:description", content: "Simulaciones de gobierno con decisiones, objetivos e impacto." },
+      { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Gobierno,
@@ -113,7 +116,7 @@ function Gobierno() {
           </div>
           <PrimaryBtn className="mt-6 w-full sm:w-auto" onClick={submit}>Presentar al Concejo</PrimaryBtn>
         </Panel>
-        <div className="space-y-4">
+        <div className="space-y-4 lg:sticky lg:top-24 lg:self-start">
           {metrics.map(([k, l]) => (
             <Panel key={k}>
               <div className="flex justify-between"><span className="text-sm text-muted-foreground">{l}</span><span className="font-display text-2xl font-bold">{calc(k)}</span></div>

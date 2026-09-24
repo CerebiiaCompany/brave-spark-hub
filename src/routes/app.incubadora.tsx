@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Check, Plus, Trash2 } from "lucide-react";
+import { Check, Download, Plus, Trash2 } from "lucide-react";
 import { incubatorStages } from "@/lib/data";
 import { PageHeader, Panel, PrimaryBtn, GhostBtn, Chip, Bar } from "@/components/ui-kit";
 
@@ -10,6 +10,9 @@ export const Route = createFileRoute("/app/incubadora")({
     meta: [
       { title: "Incubadora Empresarial — Liderazgo Valiente" },
       { name: "description", content: "Crea y acompaña varios emprendimientos por etapas hasta el Demo Day." },
+      { property: "og:title", content: "Incubadora Empresarial — Liderazgo Valiente" },
+      { property: "og:description", content: "Crea y acompaña emprendimientos por etapas hasta el Demo Day." },
+      { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Incubadora,
@@ -44,7 +47,7 @@ function Incubadora() {
   return (
     <div>
       <PageHeader eyebrow="Incubadora" title="Mis emprendimientos" desc="Crea varios proyectos y llévalos etapa por etapa hasta el Demo Day."
-        action={<PrimaryBtn onClick={() => setForm({ name: "", category: categories[0]!, pitch: "" })}><Plus className="h-4 w-4" />Nuevo proyecto</PrimaryBtn>} />
+        action={<PrimaryBtn className="w-full sm:w-auto" onClick={() => setForm({ name: "", category: categories[0]!, pitch: "" })}><Plus className="h-4 w-4" />Nuevo proyecto</PrimaryBtn>} />
 
       {form && (
         <Panel className="mb-6 border-primary">
@@ -77,9 +80,9 @@ function Incubadora() {
             <h2 className="truncate text-xl font-bold">{p.name}</h2>
             <button onClick={() => { setProjects(projects.filter((x) => x.id !== p.id)); toast("Proyecto eliminado"); }} className="text-muted-foreground hover:text-destructive" aria-label="Eliminar"><Trash2 className="h-4 w-4" /></button>
           </div>
-          <div className="grid grid-cols-3 gap-3 md:grid-cols-6">
+          <div className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 md:grid-cols-6">
             {incubatorStages.map((s, i) => (
-              <div key={s} className="text-center">
+              <div key={s} className="w-28 shrink-0 snap-start text-center sm:w-auto">
                 <div className={`mx-auto grid h-10 w-10 place-items-center rounded-full text-sm font-bold ${i < p.stage ? "bg-success text-primary-foreground" : i === p.stage ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
                   {i < p.stage ? <Check className="h-4 w-4" /> : i + 1}
                 </div>
@@ -87,13 +90,13 @@ function Incubadora() {
               </div>
             ))}
           </div>
-          <PrimaryBtn className="mt-6" onClick={() => { if (p.stage < 5) { update({ stage: p.stage + 1 }); toast.success("Etapa completada · +200 XP"); } }}>
+          <PrimaryBtn className="mt-6 w-full sm:w-auto" onClick={() => { if (p.stage < 5) { update({ stage: p.stage + 1 }); toast.success("Etapa completada · +200 XP"); } }}>
             {p.stage < 5 ? `Completar: ${incubatorStages[p.stage]}` : "¡Listo para Demo Day!"}
           </PrimaryBtn>
         </Panel>
         <div className="mt-6 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
           <Panel>
-            <h3 className="font-bold">Modelo de negocio</h3>
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3"><h3 className="font-bold">Modelo de negocio</h3><GhostBtn aria-label="Descargar modelo" title="Descargar modelo" onClick={() => window.print()}><Download className="h-4 w-4" /><span className="hidden sm:inline">Informe</span></GhostBtn></div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2 md:grid-cols-3">
               {canvas.map((c) => (
                 <div key={c} className="rounded-xl border border-dashed p-4">

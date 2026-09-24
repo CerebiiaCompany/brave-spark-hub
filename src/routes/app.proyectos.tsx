@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { useMemo } from "react";
 import { ArrowLeft, ArrowRight, HandHeart, Search, ThumbsUp, Users, X } from "lucide-react";
 import { projects } from "@/lib/data";
-import { PageHeader, Panel, Chip, PrimaryBtn, GhostBtn } from "@/components/ui-kit";
+import { PageHeader, Panel, Chip, PrimaryBtn, GhostBtn, Bar } from "@/components/ui-kit";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 

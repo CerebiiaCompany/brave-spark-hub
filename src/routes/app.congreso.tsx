@@ -9,6 +9,9 @@ export const Route = createFileRoute("/app/congreso")({
     meta: [
       { title: "Concejo Simulado — Liderazgo Valiente" },
       { name: "description", content: "Salas de debate, roles, cronómetro y votación en el Concejo Simulado." },
+      { property: "og:title", content: "Concejo Simulado — Liderazgo Valiente" },
+      { property: "og:description", content: "Salas de debate, roles, cronómetro y votación en el Concejo Simulado." },
+      { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Congreso,
@@ -112,7 +115,7 @@ function Congreso() {
       {/* Roles */}
       <Panel className="mt-6">
         <h3 className="font-bold">Elige tu rol</h3>
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-4 grid gap-3 min-[430px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {roles.map((r) => (
             <button key={r.k} onClick={() => { setRole(r.k); toast(`Ahora eres ${r.k}`); }}
               className={`rounded-xl border p-3 text-left transition ${role === r.k ? "border-primary bg-primary text-primary-foreground" : "hover:bg-accent"}`}>
@@ -146,7 +149,7 @@ function Congreso() {
               </div>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
             {!room.live ? <p className="text-sm text-muted-foreground">La votación se habilitará cuando inicie la sesión.</p>
               : voted ? <p className="font-semibold text-primary">Tu voto: {voted}</p> : <>
                 <PrimaryBtn onClick={() => cast("yes", "A favor")}>Votar a favor</PrimaryBtn>
