@@ -17,22 +17,19 @@ export function Logo({ compact = false }: { compact?: boolean }) {
   );
 }
 
-/** Placeholder until the official authorized portrait is provided. */
+/** Retrato oficial autorizado de Miguel Uribe Turbay. */
 export function PortraitPlaceholder({ className = "" }: { className?: string }) {
   return (
     <div
       className={`relative overflow-hidden rounded-[2rem] border border-primary/15 bg-gradient-to-b from-accent to-background ${className}`}
-      aria-label="Espacio para el retrato oficial autorizado de Miguel Uribe Turbay"
+      aria-label="Retrato oficial de Miguel Uribe Turbay"
     >
-      <div className="absolute inset-0 bg-grid opacity-60" />
-      <svg viewBox="0 0 200 240" className="absolute bottom-0 left-1/2 h-[88%] -translate-x-1/2 text-primary/25" fill="currentColor">
-        <circle cx="100" cy="78" r="44" />
-        <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
-      </svg>
-      <div className="absolute inset-x-4 bottom-4 rounded-xl bg-background/85 p-3 text-center backdrop-blur">
-        <p className="font-display text-sm font-semibold text-navy">Miguel Uribe Turbay</p>
-        <p className="text-[11px] text-muted-foreground">Espacio para imagen oficial autorizada</p>
-      </div>
+      <div className="absolute inset-0 bg-grid opacity-40" />
+      <img
+        src={miguelPortrait.url}
+        alt="Miguel Uribe Turbay"
+        className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_40px_oklch(0.24_0.08_264/0.35)]"
+      />
     </div>
   );
 }
