@@ -28,7 +28,7 @@ export function PortraitPlaceholder({ className = "" }: { className?: string }) 
       <img
         src={miguelPortrait.url}
         alt="Miguel Uribe Turbay"
-        className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain drop-shadow-[0_24px_40px_oklch(0.24_0.08_264/0.35)]"
+        className="absolute inset-0 m-auto h-full w-full object-contain object-bottom px-3 pb-0 pt-6 drop-shadow-[0_24px_40px_oklch(0.24_0.08_264/0.35)]"
       />
     </div>
   );
