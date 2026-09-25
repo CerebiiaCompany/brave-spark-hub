@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import miguelPortrait from "@/assets/miguel-uribe.png.asset.json";
 
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
