@@ -79,14 +79,6 @@ function Landing() {
           </div>
           <div className="relative mx-auto w-full max-w-md">
             <PortraitPlaceholder className="aspect-[4/5] w-full" />
-            <div className="animate-float absolute -left-6 top-10 rounded-2xl border bg-card p-3 shadow-soft">
-              <p className="text-xs text-muted-foreground">Nivel 6</p>
-              <p className="font-display text-sm font-bold">Agente de Cambio</p>
-            </div>
-            <div className="animate-float absolute -right-4 bottom-24 rounded-2xl border bg-card p-3 shadow-soft [animation-delay:1.5s]">
-              <p className="font-display text-sm font-bold">🏆 Gran Orador</p>
-              <p className="text-xs text-muted-foreground">+150 XP</p>
-            </div>
           </div>
         </div>
       </section>
