@@ -23,7 +23,6 @@ function Perfil() {
       <Panel className="overflow-hidden p-0">
         <div className="h-28 bg-navy bg-grid" />
         <div className="px-4 pb-6 sm:px-6">
-          <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl border-4 border-card bg-primary font-display text-2xl font-bold text-primary-foreground">MG</div>
           <div className="-mt-10 flex flex-col gap-4 sm:flex-row sm:items-end">
             <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl border-4 border-card bg-primary font-display text-2xl font-bold text-primary-foreground">MG</div>
             <div className="min-w-0 flex-1 pb-1">
