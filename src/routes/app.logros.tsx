@@ -25,9 +25,9 @@ function Logros() {
       <PageHeader eyebrow="Gamificación" title="Mis logros" desc={`${user.badges} insignias · Nivel ${user.level} · ${user.xp.toLocaleString("es-CO")} XP`} />
       <Panel>
         <h3 className="font-bold">Niveles</h3>
-        <div className="mt-5 flex gap-2 overflow-x-auto pb-2">
+        <div className="mt-5 flex gap-2 overflow-x-auto pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
           {levels.map((l, i) => (
-            <div key={l} className={`min-w-[120px] rounded-xl border p-3 text-center ${i + 1 === user.level ? "border-primary bg-accent" : i + 1 < user.level ? "bg-secondary" : "opacity-50"}`}>
+            <div key={l} className={`min-w-[120px] rounded-xl border p-3 text-center sm:min-w-0 ${i + 1 === user.level ? "border-primary bg-accent" : i + 1 < user.level ? "bg-secondary" : "opacity-50"}`}>
               <p className="font-display text-lg font-bold">{i + 1}</p><p className="text-xs font-medium">{l}</p>
             </div>
           ))}
