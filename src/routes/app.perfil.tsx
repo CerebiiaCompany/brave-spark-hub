@@ -22,13 +22,16 @@ function Perfil() {
     <div className="space-y-6">
       <Panel className="overflow-hidden p-0">
         <div className="h-28 bg-navy bg-grid" />
-        <div className="-mt-10 grid grid-cols-[auto_minmax(0,1fr)] gap-4 px-4 pb-6 sm:px-6 md:flex md:items-end">
+        <div className="px-4 pb-6 sm:px-6">
           <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl border-4 border-card bg-primary font-display text-2xl font-bold text-primary-foreground">MG</div>
-          <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-bold">{user.name}</h1>
-            <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-4 w-4 shrink-0" /> <span className="truncate">{user.role} · {user.city}</span></p>
+          <div className="-mt-10 flex flex-col gap-4 sm:flex-row sm:items-end">
+            <div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl border-4 border-card bg-primary font-display text-2xl font-bold text-primary-foreground">MG</div>
+            <div className="min-w-0 flex-1 pb-1">
+              <h1 className="break-words text-2xl font-bold">{user.name}</h1>
+              <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-4 w-4 shrink-0" /> <span className="min-w-0 truncate">{user.role} · {user.city}</span></p>
+            </div>
           </div>
-          <div className="col-span-2 flex flex-wrap gap-2 md:ml-auto"><Chip>Nivel {user.level} · {user.levelName}</Chip><Chip tone="gold">{user.xp} XP</Chip><GhostBtn className="w-full sm:w-auto" onClick={() => toast.info("Edición de perfil habilitada en modo demostración")}><Edit3 className="h-4 w-4" /> Editar perfil</GhostBtn></div>
+          <div className="mt-4 flex flex-wrap gap-2 sm:pl-24"><Chip>Nivel {user.level} · {user.levelName}</Chip><Chip tone="gold">{user.xp} XP</Chip><GhostBtn className="w-full sm:ml-auto sm:w-auto" onClick={() => toast.info("Edición de perfil habilitada en modo demostración")}><Edit3 className="h-4 w-4" /> Editar perfil</GhostBtn></div>
         </div>
       </Panel>
       <div className="grid gap-6 lg:grid-cols-3">
@@ -62,7 +65,7 @@ function Perfil() {
       </div>
       <div className="grid gap-6 lg:grid-cols-2">
         <Panel><h3 className="flex items-center gap-2 font-bold"><CalendarDays className="h-5 w-5 text-primary" /> Actividad reciente</h3><div className="mt-4 space-y-3">{activities.slice(0,3).map((a) => <div key={a.title} className="grid grid-cols-[auto_minmax(0,1fr)] gap-3 rounded-xl bg-secondary p-3"><span className="text-xl">{a.type}</span><div><p className="text-sm font-semibold">{a.title}</p><p className="text-xs text-muted-foreground">{a.when}</p></div></div>)}</div></Panel>
-        <Panel><h3 className="flex items-center gap-2 font-bold"><Award className="h-5 w-5 text-primary" /> Evidencias de liderazgo</h3><div className="mt-4 grid grid-cols-2 gap-3"><div className="rounded-xl bg-secondary p-4"><BookOpen className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">7</p><p className="text-xs text-muted-foreground">entregas verificadas</p></div><div className="rounded-xl bg-secondary p-4"><FileCheck2 className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">3</p><p className="text-xs text-muted-foreground">certificados</p></div></div><GhostBtn className="mt-4 w-full" onClick={() => toast.info("Portafolio preparado para compartir")}>Compartir portafolio</GhostBtn></Panel>
+        <Panel><h3 className="flex items-center gap-2 font-bold"><Award className="h-5 w-5 text-primary" /> Evidencias de liderazgo</h3><div className="mt-4 grid gap-3 min-[360px]:grid-cols-2"><div className="min-w-0 rounded-xl bg-secondary p-4"><BookOpen className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">7</p><p className="break-words text-xs text-muted-foreground">entregas verificadas</p></div><div className="min-w-0 rounded-xl bg-secondary p-4"><FileCheck2 className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">3</p><p className="break-words text-xs text-muted-foreground">certificados</p></div></div><GhostBtn className="mt-4 w-full" onClick={() => toast.info("Portafolio preparado para compartir")}>Compartir portafolio</GhostBtn></Panel>
       </div>
     </div>
   );

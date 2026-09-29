@@ -34,7 +34,7 @@ function Dashboard() {
         </div>
       </Panel>
 
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-7">
         <Stat label="Nivel" value={user.level} icon={<Star className="h-4 w-4" />} />
         <Stat label="XP" value={user.xp.toLocaleString("es-CO")} icon={<TrendingUp className="h-4 w-4" />} />
         <Stat label="Racha" value={`🔥 ${user.streak}`} />

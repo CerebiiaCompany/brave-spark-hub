@@ -27,7 +27,7 @@ export function CertificateModal({ course, onClose }: { course: Course; onClose:
   };
   return (
     <div className="cert-print-root fixed inset-0 z-[70] flex items-end bg-navy/50 sm:items-center sm:justify-center sm:p-6" role="dialog" aria-modal="true" aria-label="Certificado">
-      <div className="max-h-[94vh] w-full overflow-y-auto rounded-t-2xl bg-background p-4 shadow-lift sm:max-w-4xl sm:rounded-2xl sm:p-6">
+      <div className="max-h-[100dvh] w-full overflow-y-auto overscroll-contain rounded-t-2xl bg-background p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-lift sm:max-h-[94vh] sm:max-w-4xl sm:rounded-2xl sm:p-6">
         <div className="no-print mb-4 flex items-center justify-between gap-3">
           <h2 className="text-lg font-bold">Certificado oficial</h2>
           <button onClick={onClose} className="grid h-11 w-11 place-items-center rounded-lg hover:bg-accent" aria-label="Cerrar certificado"><X className="h-5 w-5" /></button>
@@ -45,7 +45,7 @@ export function CertificateModal({ course, onClose }: { course: Course; onClose:
               <div className="rounded-lg bg-secondary p-3"><p className="text-xs text-muted-foreground">Fecha</p><p className="font-bold">{d.date}</p></div>
               <div className="rounded-lg bg-secondary p-3"><p className="text-xs text-muted-foreground">Ruta</p><p className="font-bold">{d.path}</p></div>
             </div>
-            <p className="mt-6 flex items-center justify-center gap-2 text-xs font-semibold text-navy"><ShieldCheck className="h-4 w-4 text-success" /> Código de verificación: <span className="font-mono">{d.code}</span></p>
+            <p className="mt-6 flex flex-wrap items-center justify-center gap-2 break-all text-xs font-semibold text-navy"><ShieldCheck className="h-4 w-4 shrink-0 text-success" /> Código de verificación: <span className="font-mono">{d.code}</span></p>
           </div>
         </div>
         <div className="no-print mt-4 grid gap-2 sm:grid-cols-3">

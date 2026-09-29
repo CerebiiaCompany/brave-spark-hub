@@ -21,7 +21,7 @@ function Impacto() {
     <div className="space-y-6">
       <PageHeader eyebrow="Resultados" title="Dashboard de impacto" desc="Indicadores del Centro en tiempo real (datos de demostración)." action={<PrimaryBtn className="w-full sm:w-auto" onClick={() => window.print()}><Download className="h-4 w-4" /> Descargar informe</PrimaryBtn>} />
       <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">{["Este mes", "6 meses", "Este año"].map((p) => <button key={p} onClick={() => setPeriod(p)} className={`min-h-10 shrink-0 rounded-full px-4 text-sm font-semibold ${period === p ? "bg-primary text-primary-foreground" : "border bg-background"}`}>{p}</button>)}</div>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-3 sm:gap-4 md:grid-cols-4">
         <Stat label="Jóvenes formados" value={Math.round(impact.youth * multiplier).toLocaleString("es-CO")} icon={<Users className="h-4 w-4" />} />
         <Stat label="Proyectos" value={Math.round(impact.projects * multiplier)} icon={<TrendingUp className="h-4 w-4" />} />
         <Stat label="Horas de formación" value={Math.round(impact.hours * multiplier).toLocaleString("es-CO")} icon={<Activity className="h-4 w-4" />} />
