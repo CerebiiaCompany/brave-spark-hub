@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Responsive rule: app overlays use dynamic viewport height and safe-area padding; dense header rows use shrink-safe grids.

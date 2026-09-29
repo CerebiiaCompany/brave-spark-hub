@@ -42,12 +42,12 @@ function AppLayout() {
   }, [open]);
   return (
     <div className="flex min-h-screen bg-secondary/50">
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r bg-sidebar transition-transform lg:sticky lg:top-0 lg:h-screen lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-[min(16rem,88vw)] border-r bg-sidebar transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-64 lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex h-16 items-center justify-between px-5">
           <Logo />
           <button className="grid h-11 w-11 place-items-center rounded-lg hover:bg-sidebar-accent lg:hidden" onClick={() => setOpen(false)} aria-label="Cerrar menú"><X className="h-5 w-5" /></button>
         </div>
-        <nav className="h-[calc(100vh-4rem)] space-y-0.5 overflow-y-auto px-3 pb-6">
+        <nav className="h-[calc(100dvh-4rem)] space-y-0.5 overflow-y-auto overscroll-contain px-3 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
           {nav.map((n) => (
             <Link
               key={n.to}
@@ -67,14 +67,14 @@ function AppLayout() {
         <header className="sticky top-0 z-30 grid h-16 grid-cols-[auto_minmax(0,1fr)] items-center gap-2 border-b bg-background/85 px-2 backdrop-blur sm:px-5 lg:flex lg:justify-between">
           <button className="grid h-11 w-11 shrink-0 place-items-center rounded-lg hover:bg-accent lg:hidden" onClick={() => setOpen(true)} aria-label="Abrir menú"><Menu className="h-5 w-5" /></button>
           <div className="hidden text-sm text-muted-foreground lg:block">Centro para el Liderazgo Valiente Miguel Uribe Turbay</div>
-          <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-4">
-            <span className="flex items-center gap-1 text-sm font-semibold"><Flame className="h-4 w-4 text-coral" />{user.streak}</span>
+          <div className="flex min-w-0 items-center justify-end gap-1 sm:gap-4">
+            <span className="hidden items-center gap-1 text-sm font-semibold min-[360px]:flex"><Flame className="h-4 w-4 text-coral" />{user.streak}</span>
             <span className="truncate rounded-full bg-accent px-2 py-1 text-xs font-bold text-accent-foreground">{user.xp.toLocaleString("es-CO")} XP</span>
-            <button className="grid h-10 w-10 shrink-0 place-items-center rounded-lg hover:bg-accent" aria-label="Notificaciones"><Bell className="h-5 w-5 text-muted-foreground" /></button>
+            <button className="grid h-10 w-10 shrink-0 place-items-center rounded-lg hover:bg-accent max-[359px]:hidden" aria-label="Notificaciones"><Bell className="h-5 w-5 text-muted-foreground" /></button>
             <Link to="/app/perfil" aria-label="Abrir mi perfil" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-navy text-xs font-bold text-navy-foreground">MG</Link>
           </div>
         </header>
-        <main className="mx-auto max-w-6xl overflow-x-hidden px-4 py-5 sm:px-5 md:px-8 md:py-8">
+        <main className="mx-auto max-w-6xl overflow-x-hidden px-4 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:px-5 md:px-8 md:py-8">
           <Outlet />
         </main>
       </div>

@@ -7,3 +7,4 @@
 - [x] Iterar Retos, Alianzas y Territorio
 - [x] Corregir responsive transversal y metadatos
 - [x] Verificar recorridos en móvil y escritorio
+- [x] Revisión responsive integral en celular, tableta y escritorio

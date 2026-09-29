@@ -77,7 +77,7 @@ function CourseViewer({ course, start, onClose, onCert }: { course: Course; star
   };
   return (
     <div className="fixed inset-0 z-[60] flex items-end bg-navy/40 sm:items-center sm:justify-center sm:p-6" role="dialog" aria-modal="true" aria-label={`Curso ${course.title}`}>
-      <div className="max-h-[94vh] w-full overflow-y-auto rounded-t-2xl bg-background p-4 shadow-lift sm:max-w-6xl sm:rounded-2xl sm:p-6">
+      <div className="max-h-[100dvh] w-full overflow-y-auto overscroll-contain rounded-t-2xl bg-background p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-lift sm:max-h-[94vh] sm:max-w-6xl sm:rounded-2xl sm:p-6">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4">
           <div className="min-w-0"><Chip>{course.path}</Chip><h2 className="mt-2 text-xl font-bold sm:text-2xl">{course.title}</h2><p className="mt-1 text-sm text-muted-foreground">{course.lessons} lecciones · {course.hours} horas · +{course.lessons * 20} XP</p></div>
           <button onClick={onClose} className="grid h-11 w-11 place-items-center rounded-lg hover:bg-accent" aria-label="Cerrar curso"><X className="h-5 w-5" /></button>
@@ -103,7 +103,7 @@ function CourseViewer({ course, start, onClose, onCert }: { course: Course; star
               {tab === "notas" && <ul className="space-y-2">{l.keyNotes.map((n) => <li key={n} className="flex gap-2 text-sm"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{n}</li>)}</ul>}
               {tab === "lectura" && <article className="space-y-4">{l.reading.map((s) => <section key={s.heading}><h4 className="font-bold">{s.heading}</h4><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.body}</p></section>)}</article>}
               {tab === "recursos" && <div className="space-y-2">{l.resources.map((r) => (
-                <div key={r.name} className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-lg bg-secondary p-3">
+                <div key={r.name} className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-lg bg-secondary p-3 sm:gap-3">
                   <FileText className="h-5 w-5 text-coral" /><div className="min-w-0"><p className="truncate text-sm font-semibold">{r.name}</p><p className="text-xs text-muted-foreground">PDF · {r.pages} págs.</p></div>
                   <GhostBtn onClick={() => downloadResourcePdf(course.title, l, r.name)} aria-label={`Descargar ${r.name}`}><Download className="h-4 w-4" /></GhostBtn>
                 </div>))}</div>}
@@ -120,8 +120,8 @@ function CourseViewer({ course, start, onClose, onCert }: { course: Course; star
               {lessons.map((x, i) => (
                 <button key={i} disabled={i > done} onClick={() => { setCur(i); setPick(null); }} className={`grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-xl border p-3 text-left disabled:opacity-60 ${i === cur ? "border-primary bg-accent" : "bg-background"}`}>
                   {i < done ? <CheckCircle2 className="h-5 w-5 text-success" /> : i === done ? <PlayCircle className="h-5 w-5 text-primary" /> : <LockKeyhole className="h-4 w-4 text-muted-foreground" />}
-                  <span className="min-w-0 text-sm font-medium">{i + 1}. {x.title}</span>
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground"><Clock className="h-3 w-3" />{x.minutes}m</span>
+                  <span className="min-w-0 break-words text-sm font-medium">{i + 1}. {x.title}</span>
+                  <span className="flex shrink-0 items-center gap-1 text-xs text-muted-foreground"><Clock className="h-3 w-3" />{x.minutes}m</span>
                 </button>
               ))}
             </div>

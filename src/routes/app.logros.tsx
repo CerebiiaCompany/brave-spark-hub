@@ -25,19 +25,19 @@ function Logros() {
       <PageHeader eyebrow="Gamificación" title="Mis logros" desc={`${user.badges} insignias · Nivel ${user.level} · ${user.xp.toLocaleString("es-CO")} XP`} />
       <Panel>
         <h3 className="font-bold">Niveles</h3>
-        <div className="mt-5 flex gap-2 overflow-x-auto pb-2">
+        <div className="mt-5 flex gap-2 overflow-x-auto pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
           {levels.map((l, i) => (
-            <div key={l} className={`min-w-[120px] rounded-xl border p-3 text-center ${i + 1 === user.level ? "border-primary bg-accent" : i + 1 < user.level ? "bg-secondary" : "opacity-50"}`}>
+            <div key={l} className={`min-w-[120px] rounded-xl border p-3 text-center sm:min-w-0 ${i + 1 === user.level ? "border-primary bg-accent" : i + 1 < user.level ? "bg-secondary" : "opacity-50"}`}>
               <p className="font-display text-lg font-bold">{i + 1}</p><p className="text-xs font-medium">{l}</p>
             </div>
           ))}
         </div>
       </Panel>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3"><Panel><Flame className="h-5 w-5 text-coral" /><p className="mt-2 text-2xl font-bold">{user.streak} días</p><p className="text-xs text-muted-foreground">racha activa</p></Panel><Panel><TrendingUp className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">+480</p><p className="text-xs text-muted-foreground">XP esta semana</p></Panel><Panel className="col-span-2 md:col-span-1"><LockKeyhole className="h-5 w-5 text-violet" /><p className="mt-2 text-2xl font-bold">3 retos</p><p className="text-xs text-muted-foreground">para el siguiente nivel</p></Panel></div>
+      <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-3 sm:gap-4 md:grid-cols-3"><Panel><Flame className="h-5 w-5 text-coral" /><p className="mt-2 text-2xl font-bold">{user.streak} días</p><p className="text-xs text-muted-foreground">racha activa</p></Panel><Panel><TrendingUp className="h-5 w-5 text-primary" /><p className="mt-2 text-2xl font-bold">+480</p><p className="text-xs text-muted-foreground">XP esta semana</p></Panel><Panel className="col-span-2 md:col-span-1"><LockKeyhole className="h-5 w-5 text-violet" /><p className="mt-2 text-2xl font-bold">3 retos</p><p className="text-xs text-muted-foreground">para el siguiente nivel</p></Panel></div>
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <Panel>
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"><h3 className="font-bold">Insignias</h3><div className="flex gap-2">{["Todas","Obtenidas","Pendientes"].map((f) => <button key={f} onClick={() => setFilter(f)} className={`rounded-full px-3 py-1.5 text-xs font-semibold ${filter === f ? "bg-primary text-primary-foreground" : "bg-secondary"}`}>{f}</button>)}</div></div>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center"><h3 className="font-bold">Insignias</h3><div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1">{["Todas","Obtenidas","Pendientes"].map((f) => <button key={f} onClick={() => setFilter(f)} className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold ${filter === f ? "bg-primary text-primary-foreground" : "bg-secondary"}`}>{f}</button>)}</div></div>
+          <div className="mt-5 grid grid-cols-[repeat(2,minmax(0,1fr))] gap-3 sm:grid-cols-3 md:grid-cols-4">
             {visible.map((b) => (
               <div key={b.name} className={`card-hover rounded-2xl p-4 text-center ${tone[b.tone]}`}>
                 <p className="text-3xl">{b.emoji}</p>
