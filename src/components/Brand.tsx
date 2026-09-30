@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import miguelPortrait from "@/assets/miguel-uribe.png.asset.json";
 
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
@@ -26,7 +25,7 @@ export function PortraitPlaceholder({ className = "" }: { className?: string }) 
     >
       <div className="absolute inset-0 bg-grid opacity-40" />
       <img
-        src={miguelPortrait.url}
+        src="/miguel-uribe.png"
         alt="Miguel Uribe Turbay"
         className="absolute inset-0 m-auto h-full w-full object-contain object-bottom px-3 pb-0 pt-6 drop-shadow-[0_24px_40px_oklch(0.24_0.08_264/0.35)]"
       />
